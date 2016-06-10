@@ -6,9 +6,11 @@
 
 ### UserLogin
 *	Page where user can input email address.
+
 #### HTML
 *	A form for user to input email.
 *	User authentication (password) not done for now.  
+
 #### JS
 *	Bind event listener onSubmit to the form
 *	prevent default submit
@@ -19,38 +21,42 @@
 
 ### Dashboard 
 *	Page where user can see summary of the contact list. 
+
 #### HTML
 *	Add a Link/Button to add new contact UserAddContact.
 *	Create a table to show current users fullName, phone, email, EditLink
 *   Might also need to create company and jobtitle as hidden field
 *	Depending on the number of users, add sort, search and pagination features (Optional)
+
 #### JS
 *	socket.on('dashboard', function(data)){
 	 // append to the contacts table
 }
 
-
 ### AddContact
 *	Page for user to add contact
+
 #### HTML
 *	A form with fistName,LastName,phone,email,company,jobTitle etc. 
 *	Hidden element with current user email.
 *	Button to Add Contact
-##### JS
+
+#### JS
 * 	Bind event listener to OnSubmit
 *	Send the information over socket to nodejs
 *	Eg socket.emit('addContact', {userEmail: userEmail, contactEmail: contactEmail ....})
 *	Display the success/error messages appropriately
 
 
-
 ### EditContact
 *	Page for user to edit/delete contact
+
 #### HTML
 *	A form with fistName,LastName,phone,email,company,jobTitle etc. 
 *	Hidden element with current user email.
 * 	Edit and Delete Button
-##### JS
+
+#### JS
 * 	Bind event listener to OnSubmit
 *	Check Edit or Delete. If Delete as for final confirmation. 
 *	Send the information over socket to nodejs
@@ -61,7 +67,8 @@
 
 ### DetailContact
 *	Page for user to view details for one contact.
-### HTML
+
+#### HTML
 *	A pop up modal that shows the complete details of this particular contact
 
 
@@ -71,7 +78,7 @@
 *	Socket.io configuration 
 * 	Routes configuration (/, /userLogin, /userAddContact, /userEditContact, /dashboard)
 
-## Functions related to MongoDB
+### Functions related to MongoDB
 *   function to create new User (optional: this is required but not part of task) 
 *	function to insert new contact (input userEmail and contact attributes)
 *	function to edit one contact (input userEmail and contact attributes) 
@@ -86,17 +93,17 @@
 
 
 
-## Router and Socket Notes
+### Router and Socket Notes
 
-var router = express.Router();
+*	var router = express.Router();
 
-router.get('/user/:email', function(req, res) {
-	var email = req.params.email;
-	// get contact list from mongoDB (dummy function below)
-	var contacts = getContacts(email);
-	// use socket to send back the information
-	// res.send(contacts) (this is traditional method);
-	// need to get socketID through connection
-	io.to(socket#id).emit('dashboard', contact)
-});
+*	router.get('/user/:email', function(req, res) {
+		var email = req.params.email;
+		// get contact list from mongoDB (dummy function below)
+		var contacts = getContacts(email);
+		// use socket to send back the information
+		// res.send(contacts) (this is traditional method);
+		// need to get socketID through connection
+		io.to(socket#id).emit('dashboard', contact)
+	});
 
